@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About Us | GlowCare</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background: #fefefe;
+      color: #333;
+    }
+.navbar {
+            background-color: #0f3057;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        }
+        .logo {
+            color: #fff;
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+        }
+        .nav-links li a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        .nav-links li a:hover {
+            color: #ffcc29;
+        }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 60px;
+      background: #fff;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
+
+    .logo-heading {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+    }
+
+    nav a {
+      text-decoration: none;
+      margin-left: 40px;
+      color: #6a4c93;
+      font-weight: 700;
+      transition: 0.4s;
+      position: relative;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      width: 0%;
+      height: 2px;
+      bottom: -4px;
+      left: 0;
+      background-color: #a084ca;
+      transition: width 0.4s;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(to right, #6a4c93, #a084ca);
+      color: #fff;
+      text-align: center;
+      padding: 120px 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero h1 {
+      font-size: 4rem;
+      margin-bottom: 10px;
+      animation: fadeDown 1.2s ease-in-out;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      animation: fadeUp 1.5s ease-in-out;
+    }
+
+    .floating-circles {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .floating-circles span {
+      position: absolute;
+      display: block;
+      width: 60px;
+      height: 60px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 50%;
+      animation: float 10s linear infinite;
+    }
+
+    .floating-circles span:nth-child(1) {
+      top: 20%;
+      left: 5%;
+      animation-delay: 0s;
+    }
+
+    .floating-circles span:nth-child(2) {
+      top: 40%;
+      left: 80%;
+      animation-delay: 2s;
+    }
+
+    .floating-circles span:nth-child(3) {
+      top: 60%;
+      left: 20%;
+      animation-delay: 4s;
+    }
+
+    @keyframes float {
+      0% {transform: translateY(0);}
+      50% {transform: translateY(-30px);}
+      100% {transform: translateY(0);}
+    }
+
+    /* About Section */
+    .about {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      padding: 80px 60px;
+      background: #fafafa;
+    }
+
+    .about img {
+      flex: 1;
+      max-width: 500px;
+      border-radius: 20px;
+      box-shadow: 0 12px 24px rgba(0,0,0,0.1);
+      transform: translateX(-50px);
+      opacity: 0;
+      transition: all 1s ease;
+    }
+
+    .about-text {
+      flex: 1;
+      padding: 40px;
+      animation: fadeIn 1.5s forwards;
+    }
+
+    .about-text h2 {
+      font-size: 2.5rem;
+      color: #6a4c93;
+      margin-bottom: 20px;
+    }
+
+    .about-text p {
+      line-height: 1.7;
+      font-size: 1.1rem;
+      color: #555;
+    }
+
+    .about.show img {
+      transform: translateX(0);
+      opacity: 1;
+    }
+
+    /* Mission & Vision */
+    .mission-vision {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 40px;
+      background: #6a4c93;
+      color: #fff;
+      padding: 80px 60px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .mission-vision::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: url('https://www.transparenttextures.com/patterns/stardust.png');
+      opacity: 0.05;
+      z-index: 0;
+    }
+
+    .card {
+      background-color: #a084ca;
+      padding: 30px;
+      border-radius: 15px;
+      width: 300px;
+      text-align: center;
+      box-shadow: 0 12px 24px rgba(0,0,0,0.1);
+      transition: transform 0.5s;
+      z-index: 1;
+    }
+
+    .card:hover {
+      transform: translateY(-10px) rotate(1deg);
+    }
+
+    .card h3 {
+      font-size: 1.8rem;
+      margin-bottom: 15px;
+    }
+
+    /* Team */
+    .team {
+      text-align: center;
+      padding: 80px 60px;
+      background: #fafafa;
+    }
+
+    .team h2 {
+      font-size: 2.8rem;
+      color: #6a4c93;
+      margin-bottom: 40px;
+    }
+
+    .team-members {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+    }
+
+    .member {
+      background: #fff;
+      border-radius: 15px;
+      padding: 20px;
+      width: 220px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+      transition: transform 0.5s;
+    }
+
+    .member:hover {
+      transform: scale(1.05);
+    }
+
+    .member img {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-bottom: 15px;
+    }
+
+    .member h4 {
+      color: #6a4c93;
+      margin-bottom: 5px;
+    }
+
+    .member p {
+      font-size: 0.9rem;
+      color: #555;
+    }
+
+    footer {
+      background: #6a4c93;
+      color: #fff;
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9rem;
+    }
+    .mission-vision {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+  background: #6a4c93;
+  color: #fff;
+  padding: 80px 60px;
+  position: relative;
+  overflow: hidden;
+}
+
+.mission-vision::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: url('https://www.transparenttextures.com/patterns/stardust.png');
+  opacity: 0.1;
+  z-index: 0;
+}
+
+.card {
+  background-color: #a084ca;
+  padding: 40px 30px;
+  border-radius: 15px;
+  width: 300px;
+  text-align: center;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+  transition: transform 0.6s ease, box-shadow 0.6s ease;
+  z-index: 1;
+  animation: fadeInUp 1s ease forwards;
+  opacity: 0;
+}
+
+.card:nth-child(1) {
+  animation-delay: 0.3s;
+}
+
+.card:nth-child(2) {
+  animation-delay: 0.6s;
+}
+
+.card:nth-child(3) {
+  animation-delay: 0.9s;
+}
+
+.card:hover {
+  transform: translateY(-12px) scale(1.05);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.card h3 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.card ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.card ul li {
+  margin-bottom: 12px;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+    /* Animations */
+    @keyframes fadeDown {
+      0% {opacity: 0; transform: translateY(-50px);}
+      100% {opacity: 1; transform: translateY(0);}
+    }
+
+    @keyframes fadeUp {
+      0% {opacity: 0; transform: translateY(50px);}
+      100% {opacity: 1; transform: translateY(0);}
+    }
+
+    @keyframes fadeIn {
+      0% {opacity: 0;}
+      100% {opacity: 1;}
+    }
+
+    @media(max-width: 768px) {
+      .about {
+        flex-direction: column;
+      }
+
+      .about img {
+        margin-bottom: 40px;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+ 
+   <!-- Navigation Bar -->
+<nav class="navbar">
+  <div class="logo">BookNest</div>
+  <ul class="nav-links">
+    <li><a href="index.php">Home</a></li>
+    <li><a href="categories.php">Categories</a></li>
+     <li><a href="aboutus.html">About Us</a></li>
+    <li><a href="cart.php">🛒</a></li>
+    <li><a href="wishlist.php">❤️</a></li>
+    <li><a href="loginindex.php">👤</a></li>
+  </ul>
+</nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="floating-circles">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <h1>About BookNest</h1>
+    <p>One Store.Endless Stories.</p>
+  </section>
+
+  <!-- ABOUT SECTION -->
+  <section class="about" id="about-section">
+    
+    <div class="about-text">
+      <h2>Our Story</h2>
+      <p> Our love for books brought us here-to share every story with you.From fiction to facts,we have it all under one roof.A place where stores live and readers belong.Discover every kind of book,all in one cozy corner.</p>
+    </div>
+  </section>
+
+  <!-- MISSION & VISION SECTION -->
+<section class="mission-vision">
+    <div class="card">
+      <h3>Our Mission</h3>
+     <p>Our mission is to connect readers with the stories that move them.
+We aim to make books accessible, enjoyable, and inspiring for everyone.
+Through every page, we hope to spark curiosity, knowledge, and a lifelong love for reading.</p>
+    </div>
+  
+    <div class="card">
+      <h3>Our Vision</h3>
+     <p>Our vision is to create a world where every reader finds their perfect book.
+We strive to be a place of discovery, learning, and inspiration for all.
+We envision a community united by stories, fostering a love for reading in every corner of the world.</p>
+    </div>
+  
+    <div class="card">
+      <h3>Our Values</h3>
+      <p>At BookNest, we value diversity, quality, and integrity.
+We believe in making every book accessible and creating genuine connections with our readers.
+Our commitment is to foster a love for reading and provide a welcoming space for everyone.
+With every page, we aim to inspire and enrich the lives of our community.</p>
+    </div>
+  </section>
+
+  
+
+  <!-- FOOTER -->
+  <footer>
+    <?php include 'footer.php'; ?>
+  </footer>
+
+  <script>
+    // Reveal image on scroll
+    window.addEventListener('scroll', () => {
+      const aboutSection = document.getElementById('about-section');
+      const rect = aboutSection.getBoundingClientRect();
+      if (rect.top <= window.innerHeight * 0.8) {
+        aboutSection.classList.add('show');
+      }
+    });
+  </script>
+
+</body>
+</html>

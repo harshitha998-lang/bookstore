@@ -1,0 +1,105 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f8f9fa;
+}
+
+ /* Navigation Bar */
+    .navbar {
+      background-color: #0f3057;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    .logo {
+      color: #fff;
+      font-size: 1.8rem;
+      font-weight: bold;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 25px;
+    }
+
+    .nav-links li a {
+      text-decoration: none;
+      color: #fff;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links li a:hover {
+      color: #ffcc29;
+    }
+
+
+/* Hero Section */
+.hero {
+    text-align: center;
+    padding: 80px 20px;
+    background: url('heroimage.jfif') no-repeat center/cover;
+    color: white;
+}
+
+.hero .btn {
+    background: #00587a;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: white;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+/* Categories Section */
+.categories {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.category-container {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.category img {
+    width: 150px;
+    height: 150px;
+    border-radius: 10px;
+}
+
+/* Best Selling Books */
+.book-container {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.book img {
+    width: 120px;
+    height: 180px;
+}
+
+form {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+}
+
+input[type="text"] {
+    width: 800px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
