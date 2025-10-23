@@ -105,43 +105,108 @@ $subtotal = 0;
         .qty-box button {
             padding: 5px 10px;
         }
-/* Navigation Bar */
-    .navbar {
-      background-color: #0f3057;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px 30px;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-    }
 
-    .logo {
-      color: #fff;
-      font-size: 1.8rem;
-      font-weight: bold;
-    }
+        /* Navigation Bar */
+        .navbar {
+            background-color: #0f3057;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        }
 
-    .nav-links {
-      list-style: none;
-      display: flex;
-      gap: 25px;
-    }
+        .logo {
+            color: #fff;
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
 
-    .nav-links li a {
-      text-decoration: none;
-      color: #fff;
-      font-weight: 500;
-      transition: color 0.3s ease;
-    }
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+        }
 
-    .nav-links li a:hover {
-      color: #ffcc29;
-    }
+        .nav-links li a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
 
+        .nav-links li a:hover {
+            color: #ffcc29;
+        }
 
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                padding: 20px;
+            }
+
+            .cart-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .cart-item img {
+                width: 100%;
+                max-width: 200px;
+                margin-bottom: 15px;
+            }
+
+            .cart-item-price,
+            .cart-item-qty,
+            .cart-item-subtotal {
+                width: 100%;
+                text-align: left;
+                margin-top: 10px;
+            }
+
+            .cart-totals {
+                width: 100%;
+                margin-top: 30px;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                gap: 10px;
+                padding-top: 10px;
+            }
+
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .logo {
+                margin-bottom: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 22px;
+            }
+
+            .checkout-btn {
+                font-size: 14px;
+                padding: 10px 20px;
+            }
+
+            .cart-item-details h3 {
+                font-size: 16px;
+            }
+
+            .cart-item-details p {
+                font-size: 13px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -151,67 +216,65 @@ $subtotal = 0;
   <ul class="nav-links">
     <li><a href="index.php">Home</a></li>
     <li><a href="categories.php">Categories</a></li>
-     <li><a href="cart.php">About Us</a></li>
+    <li><a href="cart.php">About Us</a></li>
     <li><a href="cart.php">🛒</a></li>
     <li><a href="wishlist.php">❤️</a></li>
     <li><a href="loginindex.php">👤</a></li>
   </ul>
 </nav>
 
-    <h1 style="padding: 30px 30px 0; font-size: 28px;"><center>🛒 Your Cart</h1>
-    <div class="container">
-        <div class="cart-items">
-            <?php while($row = mysqli_fetch_assoc($result)): 
-                $item_total = $row['price'] * $row['quantity'];
-                $subtotal += $item_total;
-            ?>
-            <div class="cart-item">
-                <img src="book_images/<?php echo $row['image']; ?>" alt="Book Image">
-                <div class="cart-item-details">
-                    <h3><?php echo $row['title']; ?></h3>
-                    <p>by <?php echo $row['author']; ?></p>
+<h1 style="padding: 30px 30px 0; font-size: 28px;"><center>🛒 Your Cart</center></h1>
+<div class="container">
+    <div class="cart-items">
+        <?php while($row = mysqli_fetch_assoc($result)): 
+            $item_total = $row['price'] * $row['quantity'];
+            $subtotal += $item_total;
+        ?>
+        <div class="cart-item">
+            <img src="book_images/<?php echo $row['image']; ?>" alt="Book Image">
+            <div class="cart-item-details">
+                <h3><?php echo $row['title']; ?></h3>
+                <p>by <?php echo $row['author']; ?></p>
+            </div>
+            <div class="cart-item-price">₹<?php echo number_format($row['price'], 2); ?></div>
+            <div class="cart-item-qty">
+                <div class="qty-box">
+                    <form action="update_quantity.php" method="POST">
+                        <input type="hidden" name="cart_id" value="<?php echo $row['cart_id']; ?>">
+                        <button name="decrease">-</button>
+                        <span><?php echo $row['quantity']; ?></span>
+                        <button name="increase">+</button>
+                    </form>
                 </div>
-                <div class="cart-item-price">₹<?php echo number_format($row['price'], 2); ?></div>
-                <div class="cart-item-qty">
-                    <div class="qty-box">
-                        <form action="update_quantity.php" method="POST">
-                            <input type="hidden" name="cart_id" value="<?php echo $row['cart_id']; ?>">
-                            <button name="decrease">-</button>
-                            <span><?php echo $row['quantity']; ?></span>
-                            <button name="increase">+</button>
-                        </form>
-                    </div>
-                </div>
-                <div class="cart-item-subtotal">₹<?php echo number_format($item_total, 2); ?></div>
             </div>
-            <?php endwhile; ?>
+            <div class="cart-item-subtotal">₹<?php echo number_format($item_total, 2); ?></div>
         </div>
-
-        <div class="cart-totals">
-            <h3>Cart totals</h3>
-            <div class="totals-row">
-                <span>Subtotal</span>
-                <span>₹<?php echo number_format($subtotal, 2); ?></span>
-            </div>
-            <div class="totals-row">
-                <span>Shipping</span>
-                <span>Free</span>
-            </div>
-            <hr>
-            <div class="totals-row" style="font-weight: bold;">
-                <span>Total</span>
-                <span>₹<?php echo number_format($subtotal, 2); ?></span>
-            </div>
-            <form action="checkout.php">
-            <button class="checkout-btn">Proceed to checkout</button>
-</form>
-        </div>
+        <?php endwhile; ?>
     </div>
-<footer>
-<?php
 
-include 'footer.php'; 
-?>
+    <div class="cart-totals">
+        <h3>Cart totals</h3>
+        <div class="totals-row">
+            <span>Subtotal</span>
+            <span>₹<?php echo number_format($subtotal, 2); ?></span>
+        </div>
+        <div class="totals-row">
+            <span>Shipping</span>
+            <span>Free</span>
+        </div>
+        <hr>
+        <div class="totals-row" style="font-weight: bold;">
+            <span>Total</span>
+            <span>₹<?php echo number_format($subtotal, 2); ?></span>
+        </div>
+        <form action="checkout.php">
+            <button class="checkout-btn">Proceed to checkout</button>
+        </form>
+    </div>
+</div>
+
+<footer>
+<?php include 'footer.php'; ?>
 </footer>
 </body>
 </html>
